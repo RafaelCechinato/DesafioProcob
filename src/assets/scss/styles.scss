@@ -6,3 +6,23 @@ body,
 #root {
   height: 100%;
 }
+
+iframe {
+  display: none;
+}
+
+.border-radius-10 {
+  border-radius: 10px 10px 10px 10px;
+}
+
+.text-align-center{
+  text-align: center;
+}
+
+.overflow-x-none {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}

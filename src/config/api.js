@@ -1,13 +1,14 @@
 import axios from "axios";
-require('dotenv').config();
+//require('dotenv').config();
 
 const api = axios.create({
-    baseURL: 'https://developer.marvel.com'
+    baseURL: 'http://gateway.marvel.com/'
 });
 
 api.interceptors.request.use(async config => {
     config.headers = {
-        Accept: '*/*'
+        Accept: '*/*',
+        'If-None-Match': 'f0fbae65eb2f8f28bdeea0a29be8749a4e67acb3'
     };
 
     return config;
