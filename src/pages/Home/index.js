@@ -52,6 +52,7 @@ function Home({ favorites, dispatch }) {
                 <div className='row justify-content-center '>
                     {characters.map((item,index) => (
                         <Card
+                            show={true}
                             Key={index}
                             img={item.thumbnail.path + "." + item.thumbnail.extension}
                             title={item.name}

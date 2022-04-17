@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../config/api'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 var crypto = require('crypto');
 
 function CharacterInfo(props) {
     const [info, setInfo] = useState({});
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        getInfo();
-    }, []);
 
     const getInfo = async () => {
         setLoading(true);
@@ -19,6 +15,10 @@ function CharacterInfo(props) {
         setInfo(response.data.data.results[0])
         setLoading(false);
     }
+
+    useEffect(() => {
+        getInfo();
+    }, []);
 
     return (
         <>
@@ -36,17 +36,17 @@ function CharacterInfo(props) {
                 <div className='row'>
                     {(info.thumbnail !== undefined) ?
                         <>
-                            <div className='col-2'>
+                            <div className='col-12 col-lg-2'>
                                 <img src={info.thumbnail.path + "." + info.thumbnail.extension} className='img-fluid w-100' alt='' />
                             </div>
-                            <div className='col-10 '>
-                                <span className='d-block'>Nome: {info.name}</span>
-                                <span className='d-block'>Descrição: {(info.description !== ""&info.description !== undefined & info.description !== null)? info.description : "Não informado"}</span>
-                                <span>Comics:</span>
+                            <div className='col-10 mt-2 mt-lg-0'>
+                                <span className='d-block'><strong>Nome:</strong> {info.name}</span>
+                                <span className='d-block'><strong>Descrição:</strong> {(info.description !== "" & info.description !== undefined & info.description !== null) ? info.description : "Não informado"}</span>
+                                <span className='fw-bold'>Comics:</span>
                                 {info.comics.items.map((item, index) => (
                                     <li className='' key={index}>{item.name}</li>
                                 ))}
-                                {(info.comics.items.length === 0)?
+                                {(info.comics.items.length === 0) ?
                                     <>
                                         <span>Não informado</span>
                                     </>
