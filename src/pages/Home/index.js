@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import api from '../../config/api'
 import { Card } from '../../components/Card';
 //require('dotenv').config();
+import {connect} from 'react-redux';
 var crypto = require('crypto');
 
 
-function Home() {
+function Home( {favorites, dispatch}) {
     const [characters, setCharacters] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -18,10 +19,19 @@ function Home() {
         setLoading(false);
     };
 
+    function addFavorite (item) {
+        console.log("favorites",favorites);
+        return {
+            type: "ADD_Favorite",
+            item
+        };
+    }
+
     return (
         <>
             <div className="d-flex justify-content-start align-items-center  w-100 flex-column mt-5 overflow-x-none">
                 <span>Essa é a Home</span>
+                <a href={'/meus-favoritos'} className='w-100'>Visualizar meus favoritos</a>
                 <input type="text" onChange={({ target }) => getCharacters(target.value)} placeholder="Digite o nome do personagem" />
                 <div className='row justify-content-center '>
                     {characters.map((item, index) => (
@@ -30,6 +40,9 @@ function Home() {
                             img={item.thumbnail.path + "." + item.thumbnail.extension}
                             title={item.name}
                             SeeMoreButtonOnClick = {`/ver-mais/${item.id}`}
+                            onClickFavorites={() => dispatch(addFavorite(item))}
+                            isFavorite={favorites.findIndex( element => element.id === item.id) !== -1}
+                            //onClickRemoveFavorites ={}
                         />
                     ))}
                     {(loading === true) ?
@@ -43,4 +56,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default connect(state => ({ favorites: state }))(Home);

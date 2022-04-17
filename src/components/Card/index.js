@@ -12,6 +12,13 @@ export function Card(props) {
                 <div className="mt-2">
                     <span>{props.title}</span>
                 </div>
+                <div className='d-flex text-align-center '>
+                    {(props.isFavorite === true)?
+                        <span>Já foi adicionado</span>
+                        :
+                        <button onClick={props.onClickFavorites} className='border-0'>Favoritar personagem</button>
+                    }
+                </div>
                 <div className='d-flex text-align-center align-items-end h-100'>
                     <a href={props.SeeMoreButtonOnClick} className='w-100'>Ver mais</a>
                 </div>
