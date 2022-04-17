@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../config/api'
+import {Link} from 'react-router-dom';
 var crypto = require('crypto');
 
 function CharacterInfo(props) {
@@ -22,7 +23,7 @@ function CharacterInfo(props) {
     return (
         <>
             <div className="d-flex justify-content-start w-100 p-3">
-                <a href={'/'} className='w-100'>Voltar</a>
+                <Link to={'/'} className='w-100'>Voltar</Link>
             </div>
             {(loading === true) ?
                 <div className="d-flex justify-content-start align-items-center h-100 w-100 flex-column mt-5">
